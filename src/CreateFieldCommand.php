@@ -14,7 +14,6 @@ use Symfony\Component\Console\Helper\Table;
 
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use App\Console\Command\FileWriter\FileWriter;
 
 class CreateBasicFieldCommand extends Command
 {
@@ -30,7 +29,6 @@ class CreateBasicFieldCommand extends Command
     {
         $helper = $this->getHelper('question');
         $filesystem = new Filesystem();
-        $filewriter = new FileWriter();
 
         /**
          * Define the field type.
