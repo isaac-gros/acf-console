@@ -7,7 +7,8 @@ php acf.php acf:create:basic
 
 Please choose a basic field type.
   [0] text
-  [0] text
+  [1] textarea
+  [2] number
   [3] email
   [4] url
   [5] password
