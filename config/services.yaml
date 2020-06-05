@@ -1,0 +1,9 @@
+# Configure the destination of fields type.
+# NOTE : You must at least create the directories where the file will be stored.  
+
+fields:
+    # The "global" setting write every new field 
+    # of any type to the same place.
+    # global: './public/fields.php'
+    basic:
+        path: './public/basic-fields.php'

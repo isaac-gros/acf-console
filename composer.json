@@ -2,7 +2,9 @@
     "name": "ACF Console",
     "description": "Generate your ACF through your console.",
     "require": {
-        "symfony/console": "^5.0"
+        "symfony/console": "^5.0",
+        "symfony/yaml": "^5.1",
+        "symfony/filesystem": "^5.1"
     },
     "autoload": {
         "psr-4": {
