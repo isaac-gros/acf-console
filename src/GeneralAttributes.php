@@ -91,6 +91,8 @@ class GeneralAttributes
             'name' => $field_name,
 	        'title' => $field_title,
             'instructions' => ($field_instructions == "#") ? '' : $field_instructions,
+            'prepend' => ($field_prepend == "#") ? '' : $field_prepend,
+            'append' => ($field_append == "#") ? '' : $field_append,
             'required' => $field_required
         ];
     }
