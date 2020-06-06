@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Command;
+namespace App\Console\Command\Commons;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,15 +9,17 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
+use App\Console\Command\Commons\LocationAttributes;
+
 class GeneralAttributes
 {
     /**
      * Falsely execute command questions and return written input.
      * @return array
      */
-    public function execute(InputInterface $input, OutputInterface $output, $display)
+    public function execute(InputInterface $input, OutputInterface $output, Command $display)
     {
-        // Create new instance of Helper 
+        // Retrieve instance of Helper 
         $helper = $display->getHelper('question');
 
         /**
