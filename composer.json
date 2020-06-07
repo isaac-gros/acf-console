@@ -1,7 +1,16 @@
 {
-    "name": "ACF Console",
-    "description": "Generate your ACF through your console.",
+    "name": "isaac-gros/acf-console",
+    "description": "Generate your ACF through a terminal.",
+    "homepage": "https://github.com/isaac-gros/acf-console/",
+    "authors": [
+        {
+            "name": "Isaac Gros",
+            "homepage": "https://github.com/isaac-gros/",
+            "role": "Fullstack Developer"
+        }
+    ],
     "require": {
+        "php": "^7.2.5",
         "symfony/console": "^5.0",
         "symfony/yaml": "^5.1",
         "symfony/filesystem": "^5.1"

@@ -36,4 +36,4 @@ Congratulations! Your field has been created.
 ```
 
 ### Configuration
-You can edit the `config/services.yaml` file to define the path to save the generated fields. In this repository the /public path is in the `.gitignore` for development purposes.
+You can edit the `config.yaml` file to define the path to save the generated fields. In this repository the /public path is in the `.gitignore` for development purposes.
