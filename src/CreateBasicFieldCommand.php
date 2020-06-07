@@ -36,7 +36,7 @@ class CreateBasicFieldCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Retrieve configuration settings.
-        $config = Yaml::parseFile('./config/services.yaml');
+        $config = Yaml::parseFile('./config.yaml');
         $destination = $config['fields'];
         $basic_field_destination = $destination['basic']['path'];
         $locations = $config['locations'];
