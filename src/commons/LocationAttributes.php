@@ -9,6 +9,8 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableSeparator;
 
 class LocationAttributes
 {
@@ -51,6 +53,7 @@ class LocationAttributes
          * As there is a lot of different location parameters, add this extra step
          * to improve the readability in the console.
          */
+        $io->newLine();
         $q_field_location_param_category = new ChoiceQuestion(
             'Please choose first a field location category.',
             array_keys($locations),
@@ -63,6 +66,7 @@ class LocationAttributes
         /**
          * Ask the user to choose the parameter for location rule.
          */
+        $io->newLine();
         $q_field_location_param = new ChoiceQuestion(
             'Please choose now the field location parameter.',
             array_keys($locations[$field_location_param_category]),
@@ -95,6 +99,7 @@ class LocationAttributes
         /**
          * Ask the user to choose the operator for location rule.
          */
+        $io->newLine();
         $q_field_location_operator = new ChoiceQuestion(
             'Define now the field location operator.',
             ['==', '!='],
@@ -108,6 +113,7 @@ class LocationAttributes
          * Ask the user to choose the parameter for location rule.
          * Set it as empty if there is no value available.
          */
+        $io->newLine();
         $field_location_value = '(missing value)';
         if(!empty($possibles_location_values) && isset($possibles_location_values)) {
             
@@ -115,7 +121,7 @@ class LocationAttributes
             $q_field_location_value = new ChoiceQuestion(
                 'Finally, choose the location value.',
                 $possibles_location_values,
-                0
+                reset($possibles_location_values)
             );
             $q_field_location_value->setErrorMessage('Please choose a valid value.');
             $field_location_value = $helper->ask($input, $output, $q_field_location_value);
@@ -135,16 +141,37 @@ class LocationAttributes
         /**
          * Sum up the field location rule created.
          */
-        $field_location_recap = "<info>Display <comment>{$field_name}</comment> when";
-        $field_location_recap .= " <comment>{$field_location_param}</comment>";
-        $field_location_recap .= " {$field_location_operator}";
-        $field_location_recap .= " <comment>{$field_location_value}</comment></info>";
-        $io->text($field_location_recap);
+        $io->newLine();
+        $io->text("<info>Display <comment>{$field_name}</comment> when :</info>");
+        
+        /**
+         * Display the array of the locations
+         */
+        $field_location_table = new Table($output);
+        $field_location_table->setStyle('box');
+        
+        $field_location_table->setHeaders(['Parameter', 'Operator', 'Value']);
+        foreach($this->rules as $location_rule_key => $location_rule) {
+            foreach($location_rule as $location_condition) {
+                $field_location_table->addRow([
+                    $location_condition['param'],
+                    $location_condition['operator'],
+                    $location_condition['value']
+                ]);
+            }
+
+            if(!empty($this->rules[$location_rule_key + 1])) {
+                $field_location_table->addRow(new TableSeparator());
+            }
+        }
+
+        $field_location_table->render();
 
 
         /**
          * Ask the user to add another condition to the current rule.
          */
+        $io->newLine();
         $q_add_new_location_rule_condition = new ConfirmationQuestion('Add another condition to this location rule? [y/n] > ', false);
         $add_new_location_rule_condition = $helper->ask($input, $output, $q_add_new_location_rule_condition);
         
@@ -156,6 +183,7 @@ class LocationAttributes
             /**
              * Ask the user to add another location rule.
              */
+            $io->newLine();
             $q_add_new_location_condition = new ConfirmationQuestion('Add another location rule ? [y/n] > ', false);
             $add_new_location_condition = $helper->ask($input, $output, $q_add_new_location_condition);
             if($add_new_location_condition) {

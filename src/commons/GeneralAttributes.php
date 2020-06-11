@@ -8,6 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 use App\Console\Command\Commons\LocationAttributes;
 
@@ -20,7 +21,9 @@ class GeneralAttributes
     public function execute(InputInterface $input, OutputInterface $output, Command $display)
     {
         // Retrieve instance of Helper 
+        // Create Symfony styles for console
         $helper = $display->getHelper('question');
+        $io = new SymfonyStyle($input, $output);
 
         /**
          * Define the field name.
@@ -36,6 +39,7 @@ class GeneralAttributes
         /**
          * Define the field title.
          */
+        $io->newLine();
         $q_field_title = new Question(
             'Please write the field title. Eg: My field > ',
             'My field'
@@ -48,6 +52,7 @@ class GeneralAttributes
          * Define the field intructions.
          * If the user doesnt provide instructions, set it as # to prevent errors.
          */
+        $io->newLine();
         $q_field_instructions = new Question(
             'Please write in the field instructions. Leave empty if not necessary. > ',
             '#'
@@ -61,6 +66,7 @@ class GeneralAttributes
          * Define the field prepend.
          * If the user doesnt provide prepend, set it as # to prevent errors.
          */
+        $io->newLine();
         $q_field_prepend = new Question(
             'Please write a field prepend. Leave empty if not necessary. > ',
             '#'
@@ -74,6 +80,7 @@ class GeneralAttributes
          * Define the field append.
          * If the user doesnt provide append, set it as # to prevent errors.
          */
+        $io->newLine();
         $q_field_append = new Question(
             'Please write a field append. Leave empty if not necessary. > ',
             '#'
@@ -85,6 +92,7 @@ class GeneralAttributes
         /**
          * Define if the field is required.
          */
+        $io->newLine();
         $q_field_required = new ConfirmationQuestion('Is the field required? [y/n] > ', false);
         $field_required = $helper->ask($input, $output, $q_field_required);
 

@@ -9,7 +9,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 use App\Console\Command\FieldWriter;
@@ -41,7 +40,7 @@ class CreateBasicFieldCommand extends Command
         $basic_field_destination = $destination['basic']['path'];
         $locations = $config['locations'];
 
-        // // Create new instance Helper and of DocumentWriter
+        // Create new instance Helper and of DocumentWriter
         $helper = $this->getHelper('question');
         $writer = new FieldWriter();
         $io = new SymfonyStyle($input, $output);
@@ -76,7 +75,8 @@ class CreateBasicFieldCommand extends Command
         $io->newLine();
         $io->section('[3/3] Define the locations rules');
         $q_field_locations = new LocationAttributes();
-        $field_locations = $q_field_locations->createLocationRule($input, $output, $this, $locations, 'field_name');
+        $field_locations = $q_field_locations
+            ->createLocationRule($input, $output, $this, $locations, $field_general_attributes['name']);
         
         /**
          * Write the field.
