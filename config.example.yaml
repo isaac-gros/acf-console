@@ -1,0 +1,118 @@
+# Configure the destination of fields type.
+# NOTE : You must at least create the directories where the files will be stored.
+
+fields:
+    groups:
+        # example_group : 
+        #     name: 'Example group'
+        #     path: './public/example.php'
+    basic:
+        path: './public/basic-fields.php'
+
+# Define here your custom post types, menu names, taxonomies etc.
+locations:
+
+    Post:
+        post_type:
+            # my_custom_post_type : Custom post type
+            post: 'Post'
+            page: 'Page'
+
+        post_template:
+            default: 'Default Template'
+        
+        post_status:
+            publish: 'Published'
+            future: 'Scheduled'
+            draft: 'Draft'
+            pending: 'Pending'
+            private: 'Private'
+            trash: 'Trash'
+            auto-draft: 'auto-draft'
+            inherit: 'inherit'
+            request-pending: 'Pending'
+            request-confirmed: 'Confirmed'
+            request-failed: 'Failed'
+            request-completed: 'Completed'
+            acf-disabled: 'Inactive'
+        
+        post_format:
+            standard: 'Standard'
+            aside: 'Aside'
+            chat: 'Chat'
+            gallery: 'Gallery'
+            link: 'Link'
+            image: 'Image'
+            quote: 'Quote'
+            status: 'Status'
+            video: 'Video'
+            audio: 'Audio'
+
+        post_category:
+            'category:uncategorized': 'Uncategorized'
+        
+        post_taxonomy:
+            'category:uncategorized': 'Uncategorized'
+
+        post:
+            # post_id : post_title
+            1: 'Hello world !'
+    
+    Page:
+        page_template:
+            default: 'Default Page'
+
+        page_type:
+            front_page: 'Homepage'
+
+        page_parent:
+            # page_id : post_title
+
+        page:
+            # page_id : post_title
+    
+    User:
+        current_user:
+            logged_in: 'Logged in'
+            viewing_front: 'Viewing front end'
+            viewing_back: 'Viewing back end'
+
+        current_user_role:
+            administrator: 'Administrator'
+            editor: 'Editor'
+            author: 'Author'
+            contributor: 'Contributor'
+            subscriber: 'Subscriber'
+
+        user_form:
+            all: 'All'
+            add: 'Add'
+            edit: 'Add / Register'
+            register: 'Register'
+
+        user_role:
+            administrator: 'Administrator'
+            editor: 'Editor'
+            author: 'Author'
+            contributor: 'Contributor'
+            subscriber: 'Subscriber'
+
+    Forms:
+        taxonomy:
+            all: 'All'
+
+        attachment:
+
+        comment:
+            all: 'All'
+
+        widget:
+            all: 'All'
+
+        nav_menu:
+            all: 'All'
+            location/navigation: 'Navigation'
+
+        nav_menu_item:
+            all: 'All'
+            location/navigation: 'Navigation'
